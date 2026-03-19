@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Ambulance,
   Heart,
@@ -10,8 +11,9 @@ import {
   ShieldCheck,
   Package,
   ChevronRight,
+  ArrowRight,
 } from "lucide-react";
-import Link from "next/link";
+import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
   title: "About Max Gorin",
@@ -64,7 +66,6 @@ const communityItems = [
     description:
       "Appointed to the OC AHA Executive Leadership Team, offering free blood pressure screenings for seniors and CPR classes.",
     icon: Heart,
-    color: "from-red-500 to-rose-600",
   },
   {
     org: "Montebello Chamber of Commerce",
@@ -72,7 +73,6 @@ const communityItems = [
     description:
       "Actively supports local business development and community events as a chamber ambassador.",
     icon: Building2,
-    color: "from-navy to-navy-light",
   },
   {
     org: "San Gabriel Valley Economic Partnership",
@@ -80,45 +80,45 @@ const communityItems = [
     description:
       "Serves on the board to promote economic development and regional collaboration in the San Gabriel Valley.",
     icon: Handshake,
-    color: "from-gold to-gold-dark",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="grain">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-navy via-navy-light to-navy-dark text-white overflow-hidden min-h-[60vh] flex items-center">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,168,67,0.12),transparent_50%)]" />
-        <div className="absolute top-20 right-20 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative w-full">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 mesh-bg" />
+        <div className="absolute top-1/3 -right-32 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] animate-pulse-glow" />
+        <div className="relative mx-auto max-w-7xl px-6 pt-32 pb-20 md:pt-40 md:pb-28 w-full">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="animate-fade-in-up">
-              <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
+            <div>
+              <nav className="flex items-center gap-2 text-sm text-gray-500 mb-10">
                 <a href="/" className="hover:text-white transition-colors duration-300">Home</a>
-                <ChevronRight size={14} className="text-gray-500" />
+                <ChevronRight size={14} className="text-gray-600" />
                 <span className="text-gold font-medium">About</span>
               </nav>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]">
-                About Max <span className="text-gold">Gorin</span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-[0.95]">
+                About Max<br />
+                <span className="text-gradient-gold">Gorin</span>
               </h1>
-              <p className="text-gray-300 leading-relaxed text-lg max-w-lg">
+              <p className="text-gray-400 leading-relaxed text-lg max-w-lg">
                 With 19+ years of emergency medical services leadership, Max
                 Gorin has built LifeLine Ambulance from the ground up -
                 transforming a two-ambulance operation into one of Los Angeles
                 County&apos;s most trusted EMS providers.
               </p>
             </div>
-            <div className="flex justify-center animate-fade-in-up-delay-2">
+            <div className="flex justify-center md:justify-end">
               <div className="relative">
-                <div className="absolute -inset-8 bg-gradient-to-br from-gold/20 to-navy-light/20 rounded-3xl blur-3xl animate-pulse-glow" />
-                <div className="absolute -inset-1 bg-gradient-to-br from-gold/40 to-navy-light/40 rounded-2xl" />
+                <div className="absolute -inset-8 bg-gradient-to-br from-gold/10 to-transparent rounded-3xl blur-3xl animate-pulse-glow" />
+                <div className="absolute -inset-[2px] bg-gradient-to-br from-gold/30 via-transparent to-navy-light/30 rounded-2xl" />
                 <Image
                   src="/max-gorin.jpeg"
                   alt="Max Gorin - Founder of LifeLine Ambulance"
-                  width={380}
-                  height={380}
-                  className="relative rounded-2xl shadow-2xl object-cover"
+                  width={400}
+                  height={400}
+                  className="relative rounded-2xl object-cover"
                   priority
                 />
               </div>
@@ -128,132 +128,140 @@ export default function AboutPage() {
       </section>
 
       {/* Biography */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-20 md:py-28">
-          <span className="inline-block text-xs font-bold text-gold uppercase tracking-widest mb-4">Biography</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-6">The Journey</h2>
-          <div className="w-24 h-1 gold-shimmer mb-10 rounded-full" />
-          <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
-            <p>
-              Max Gorin is the founder of LifeLine Ambulance, a leading
-              emergency medical services company based in Los Angeles County.
-              Since its founding in 2002, Max has dedicated himself to making a
-              difference in the lives of others through healthcare, innovation,
-              and community engagement.
-            </p>
-            <p>
-              Starting with just 6 staff members and 2 ambulances, Max wore
-              every hat - serving as an EMT, dispatcher, and marketer to get
-              LifeLine off the ground. His hands-on approach and relentless work
-              ethic fueled the company&apos;s growth into one of the
-              region&apos;s most trusted ambulance services, now operating a
-              fleet of 70 ambulances with over 300 employees providing
-              round-the-clock care.
-            </p>
-            <p>
-              When the COVID-19 pandemic struck in March 2020, Max pivoted
-              quickly - partnering with Spencer Health to distribute sanitizing
-              products and founding LifeLine Supply to provide critical personal
-              protective equipment to healthcare workers and communities in need.
-            </p>
-          </div>
+      <section className="relative border-t border-white/5">
+        <div className="absolute inset-0 bg-surface/50" />
+        <div className="relative mx-auto max-w-4xl px-6 py-24 md:py-32">
+          <FadeIn>
+            <span className="inline-block text-xs font-bold text-gold uppercase tracking-[0.2em] mb-4">Biography</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">The Journey</h2>
+            <div className="w-24 h-0.5 gold-shimmer mb-10 rounded-full" />
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
+              <p>
+                Max Gorin is the founder of LifeLine Ambulance, a leading
+                emergency medical services company based in Los Angeles County.
+                Since its founding in 2002, Max has dedicated himself to making a
+                difference in the lives of others through healthcare, innovation,
+                and community engagement.
+              </p>
+              <p>
+                Starting with just 6 staff members and 2 ambulances, Max wore
+                every hat - serving as an EMT, dispatcher, and marketer to get
+                LifeLine off the ground. His hands-on approach and relentless work
+                ethic fueled the company&apos;s growth into one of the
+                region&apos;s most trusted ambulance services, now operating a
+                fleet of 70 ambulances with over 300 employees providing
+                round-the-clock care.
+              </p>
+              <p>
+                When the COVID-19 pandemic struck in March 2020, Max pivoted
+                quickly - partnering with Spencer Health to distribute sanitizing
+                products and founding LifeLine Supply to provide critical personal
+                protective equipment to healthcare workers and communities in need.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="bg-gradient-to-b from-gray-50 to-white">
-        <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
-          <div className="text-center mb-16">
-            <span className="inline-block text-xs font-bold text-gold uppercase tracking-widest mb-4">History</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-6">
-              Milestones
-            </h2>
-            <div className="w-24 h-1 gold-shimmer mx-auto rounded-full" />
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {timeline.map((item) => (
-              <div key={item.year} className="group relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-gold/30 hover:shadow-xl transition-all duration-500">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy to-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-t-2xl" />
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy to-navy-light flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_4px_20px_rgba(212,168,67,0.3)] transition-shadow duration-300">
-                    <item.icon size={24} className="text-gold" />
-                  </div>
-                  <div>
-                    <span className="inline-block text-xs font-bold text-gold bg-gold/10 px-3 py-1 rounded-full mb-2">
-                      {item.year}
-                    </span>
-                    <h3 className="text-lg font-bold text-navy mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {item.description}
-                    </p>
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 mesh-bg-alt" />
+        <div className="relative mx-auto max-w-5xl px-6 py-24 md:py-32">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <span className="inline-block text-xs font-bold text-gold uppercase tracking-[0.2em] mb-4">History</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Milestones</h2>
+              <div className="w-24 h-0.5 gold-shimmer mx-auto rounded-full" />
+            </div>
+          </FadeIn>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {timeline.map((item, i) => (
+              <FadeIn key={item.year} delay={i * 0.1} direction="up">
+                <div className="glass-card rounded-2xl p-8 h-full">
+                  <div className="flex items-start gap-5">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center flex-shrink-0">
+                      <item.icon size={24} className="text-gold" />
+                    </div>
+                    <div>
+                      <span className="inline-block text-xs font-bold text-gold tracking-wider mb-2">
+                        {item.year}
+                      </span>
+                      <h3 className="text-lg font-bold text-white mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-500 text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
       {/* Community Involvement */}
-      <section id="community" className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <div className="text-center mb-16">
-            <span className="inline-block text-xs font-bold text-gold uppercase tracking-widest mb-4">Giving Back</span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-6">
-              Community Involvement
-            </h2>
-            <div className="w-24 h-1 gold-shimmer mx-auto rounded-full" />
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {communityItems.map((item) => (
-              <div
-                key={item.org}
-                className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className={`h-3 bg-gradient-to-r ${item.color}`} />
-                <div className="p-8">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy/5 to-navy/10 flex items-center justify-center mb-5 group-hover:from-gold/10 group-hover:to-gold/20 transition-all duration-500">
-                    <item.icon size={26} className="text-navy group-hover:text-gold transition-colors duration-500" />
+      <section id="community" className="relative border-t border-white/5">
+        <div className="absolute inset-0 bg-background" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold/[0.03] rounded-full blur-[100px]" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <span className="inline-block text-xs font-bold text-gold uppercase tracking-[0.2em] mb-4">Giving Back</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Community Involvement</h2>
+              <div className="w-24 h-0.5 gold-shimmer mx-auto rounded-full" />
+            </div>
+          </FadeIn>
+          <div className="grid md:grid-cols-3 gap-5">
+            {communityItems.map((item, i) => (
+              <FadeIn key={item.org} delay={i * 0.15} direction="up">
+                <div className="glass-card rounded-2xl p-8 h-full">
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
+                    <item.icon size={26} className="text-gold" />
                   </div>
-                  <h3 className="text-lg font-bold text-navy mb-1">
+                  <h3 className="text-lg font-bold text-white mb-1">
                     {item.org}
                   </h3>
                   <p className="text-sm font-semibold text-gold mb-3">
                     {item.role}
                   </p>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-500 text-sm leading-relaxed">
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
-          <div className="mt-16 relative bg-gradient-to-br from-navy to-navy-dark rounded-2xl p-10 md:p-14 max-w-3xl mx-auto text-center overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,168,67,0.1),transparent_60%)]" />
-            <div className="relative">
-              <div className="inline-flex items-center justify-center w-18 h-18 rounded-full bg-gold/10 mb-5">
-                <ShieldCheck size={36} className="text-gold" />
+
+          <FadeIn delay={0.2}>
+            <div className="mt-16 glass-strong rounded-2xl p-10 md:p-14 max-w-3xl mx-auto text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] to-transparent" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-5">
+                  <ShieldCheck size={32} className="text-gold" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  Community Health Programs
+                </h3>
+                <p className="text-gray-400 leading-relaxed max-w-xl mx-auto mb-6">
+                  Max Gorin provides free blood pressure screenings for seniors
+                  and CPR classes for various demographics through his
+                  partnership with the American Heart Association.
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-gold hover:text-gold-light font-semibold transition-colors duration-300"
+                >
+                  Get involved <ArrowRight size={16} />
+                </Link>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">
-                Community Health Programs
-              </h3>
-              <p className="text-gray-300 leading-relaxed max-w-xl mx-auto">
-                Max Gorin provides free blood pressure screenings for seniors and
-                CPR classes for various demographics through his partnership with
-                the American Heart Association.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 text-gold hover:text-gold-light font-semibold mt-6 transition-colors duration-300"
-              >
-                Get involved <ChevronRight size={16} />
-              </Link>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
-    </>
+    </div>
   );
 }

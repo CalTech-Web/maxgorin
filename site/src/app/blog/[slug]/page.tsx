@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
 const posts: Record<
@@ -88,52 +88,54 @@ export default async function BlogPost({
   if (!post) notFound();
 
   return (
-    <>
+    <div className="grain">
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-navy via-navy-light to-navy-dark text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,168,67,0.08),transparent_50%)]" />
-        <div className="mx-auto max-w-4xl px-6 py-20 md:py-28 relative">
-          <nav className="text-sm text-gray-400 mb-6 animate-fade-in-up">
+      <section className="relative min-h-[45vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0 mesh-bg" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[100px]" />
+        <div className="relative mx-auto max-w-4xl px-6 pt-32 pb-16 md:pt-40 md:pb-20 w-full">
+          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
             <a href="/" className="hover:text-white transition-colors duration-300">Home</a>
-            <span className="mx-2 text-gray-500">/</span>
+            <ChevronRight size={14} className="text-gray-600" />
             <a href="/blog" className="hover:text-white transition-colors duration-300">Blog</a>
-            <span className="mx-2 text-gray-500">/</span>
-            <span className="text-gold">{post.category}</span>
+            <ChevronRight size={14} className="text-gray-600" />
+            <span className="text-gold font-medium">{post.category}</span>
           </nav>
-          <span className="inline-block text-xs font-semibold text-navy bg-gold px-3 py-1.5 rounded-full mb-5 animate-fade-in-up">
+          <span className="inline-block text-xs font-bold text-background bg-gold px-4 py-1.5 rounded-full mb-6">
             {post.category}
           </span>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight animate-fade-in-up-delay-1">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
             {post.title}
           </h1>
         </div>
       </section>
 
       {/* Content */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-3xl px-6 py-20 md:py-24">
-          <article className="space-y-6 text-gray-600 text-lg leading-relaxed">
+      <section className="relative border-t border-white/5">
+        <div className="absolute inset-0 bg-surface/50" />
+        <div className="relative mx-auto max-w-3xl px-6 py-20 md:py-24">
+          <article className="space-y-6 text-gray-400 text-lg leading-relaxed">
             {post.content.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
           </article>
 
-          <div className="mt-14 pt-8 border-t border-gray-100 flex flex-col sm:flex-row justify-between gap-4">
+          <div className="mt-14 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between gap-4">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors duration-300 font-medium"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 font-medium"
             >
               <ArrowLeft size={16} /> Back to all posts
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-gold hover:text-gold-dark transition-colors duration-300 font-medium"
+              className="inline-flex items-center gap-2 text-gold hover:text-gold-light transition-colors duration-300 font-medium"
             >
               Get in touch <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
