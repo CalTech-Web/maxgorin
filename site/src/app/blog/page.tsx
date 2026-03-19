@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -22,6 +22,7 @@ const posts = [
     category: "Education",
     excerpt:
       "Getting into college requires more than just good grades. Discover proven strategies that can help you stand out in the admissions process and secure your spot at the school of your dreams.",
+    color: "from-blue-500 to-blue-600",
   },
   {
     title: "7 Ways to Improve Your Decision-Making Process",
@@ -29,6 +30,7 @@ const posts = [
     category: "Leadership",
     excerpt:
       "Strong decision-making is a cornerstone of effective leadership. Learn seven practical methods to improve how you evaluate options and make choices that drive success.",
+    color: "from-gold to-gold-dark",
   },
   {
     title: "Top 10 Ways to Run Your Business",
@@ -36,6 +38,7 @@ const posts = [
     category: "Business",
     excerpt:
       "Running a successful business takes vision, discipline, and adaptability. Here are ten key strategies for building and sustaining a thriving enterprise.",
+    color: "from-navy to-navy-light",
   },
 ];
 
@@ -44,14 +47,15 @@ export default function BlogPage() {
     <>
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-navy via-navy-light to-navy-dark text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,168,67,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,168,67,0.1),transparent_50%)]" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative">
-          <nav className="text-sm text-gray-400 mb-6 animate-fade-in-up">
+          <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8 animate-fade-in-up">
             <a href="/" className="hover:text-white transition-colors duration-300">Home</a>
-            <span className="mx-2 text-gray-500">/</span>
-            <span className="text-gold">Blog</span>
+            <ChevronRight size={14} className="text-gray-500" />
+            <span className="text-gold font-medium">Blog</span>
           </nav>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in-up">
             Blog & <span className="text-gold">Insights</span>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl animate-fade-in-up-delay-1">
@@ -69,21 +73,25 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group card-lift bg-white rounded-2xl overflow-hidden border border-gray-100"
+                className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-gold/30 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
-                <div className="h-1.5 bg-gradient-to-r from-navy via-navy-light to-gold" />
+                <div className={`h-36 bg-gradient-to-br ${post.color} relative overflow-hidden`}>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.15),transparent_60%)]" />
+                  <div className="absolute bottom-4 left-6">
+                    <span className="inline-block text-xs font-bold text-white/90 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                      {post.category}
+                    </span>
+                  </div>
+                </div>
                 <div className="p-7">
-                  <span className="inline-block text-xs font-semibold text-gold bg-gold/10 px-3 py-1.5 rounded-full mb-4">
-                    {post.category}
-                  </span>
-                  <h2 className="text-xl font-semibold text-navy group-hover:text-gold transition-colors duration-300 mb-3 leading-snug">
+                  <h2 className="text-xl font-bold text-navy group-hover:text-gold transition-colors duration-300 mb-3 leading-snug">
                     {post.title}
                   </h2>
                   <p className="text-gray-600 text-sm leading-relaxed mb-5">
                     {post.excerpt}
                   </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-gold group-hover:gap-3 transition-all duration-300">
-                    Read more <ArrowRight size={14} />
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                    Read more <ChevronRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" />
                   </span>
                 </div>
               </Link>
