@@ -83,31 +83,38 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <section className="relative bg-gradient-to-br from-navy via-navy-light to-navy-dark text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,168,67,0.08),transparent_50%)]" />
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 relative">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <nav className="text-sm text-gray-300 mb-4">
-                <a href="/" className="hover:text-white">Home</a>
-                <span className="mx-2">/</span>
+            <div className="animate-fade-in-up">
+              <nav className="text-sm text-gray-400 mb-6">
+                <a href="/" className="hover:text-white transition-colors duration-300">Home</a>
+                <span className="mx-2 text-gray-500">/</span>
                 <span className="text-gold">About</span>
               </nav>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 About Max <span className="text-gold">Gorin</span>
               </h1>
               <p className="text-gray-300 leading-relaxed text-lg">
-                With 19+ years of emergency medical services leadership, Max Gorin has built LifeLine Ambulance from the ground up - transforming a two-ambulance operation into one of Los Angeles County&apos;s most trusted EMS providers.
+                With 19+ years of emergency medical services leadership, Max
+                Gorin has built LifeLine Ambulance from the ground up -
+                transforming a two-ambulance operation into one of Los Angeles
+                County&apos;s most trusted EMS providers.
               </p>
             </div>
-            <div className="flex justify-center">
-              <Image
-                src="/max-gorin.jpeg"
-                alt="Max Gorin - Founder of LifeLine Ambulance"
-                width={360}
-                height={360}
-                className="rounded-2xl shadow-2xl object-cover"
-                priority
-              />
+            <div className="flex justify-center animate-fade-in-up-delay-2">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gold/15 rounded-2xl blur-2xl animate-pulse-glow" />
+                <Image
+                  src="/max-gorin.jpeg"
+                  alt="Max Gorin - Founder of LifeLine Ambulance"
+                  width={360}
+                  height={360}
+                  className="relative rounded-2xl shadow-2xl object-cover ring-1 ring-white/10"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -115,45 +122,62 @@ export default function AboutPage() {
 
       {/* Biography */}
       <section className="bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-16 md:py-20">
-          <h2 className="text-3xl font-bold text-navy mb-4">The Journey</h2>
-          <div className="w-16 h-1 bg-gold mb-8 rounded-full" />
-          <div className="prose prose-lg max-w-none text-gray-600">
+        <div className="mx-auto max-w-4xl px-6 py-20 md:py-24">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">The Journey</h2>
+          <div className="w-20 h-1 gold-shimmer mb-10 rounded-full" />
+          <div className="space-y-6 text-gray-600 text-lg leading-relaxed">
             <p>
-              Max Gorin is the founder of LifeLine Ambulance, a leading emergency medical services company based in Los Angeles County. Since its founding in 2002, Max has dedicated himself to making a difference in the lives of others through healthcare, innovation, and community engagement.
+              Max Gorin is the founder of LifeLine Ambulance, a leading
+              emergency medical services company based in Los Angeles County.
+              Since its founding in 2002, Max has dedicated himself to making a
+              difference in the lives of others through healthcare, innovation,
+              and community engagement.
             </p>
             <p>
-              Starting with just 6 staff members and 2 ambulances, Max wore every hat - serving as an EMT, dispatcher, and marketer to get LifeLine off the ground. His hands-on approach and relentless work ethic fueled the company&apos;s growth into one of the region&apos;s most trusted ambulance services, now operating a fleet of 70 ambulances with over 300 employees providing round-the-clock care.
+              Starting with just 6 staff members and 2 ambulances, Max wore
+              every hat - serving as an EMT, dispatcher, and marketer to get
+              LifeLine off the ground. His hands-on approach and relentless work
+              ethic fueled the company&apos;s growth into one of the
+              region&apos;s most trusted ambulance services, now operating a
+              fleet of 70 ambulances with over 300 employees providing
+              round-the-clock care.
             </p>
             <p>
-              When the COVID-19 pandemic struck in March 2020, Max pivoted quickly - partnering with Spencer Health to distribute sanitizing products and founding LifeLine Supply to provide critical personal protective equipment to healthcare workers and communities in need.
+              When the COVID-19 pandemic struck in March 2020, Max pivoted
+              quickly - partnering with Spencer Health to distribute sanitizing
+              products and founding LifeLine Supply to provide critical personal
+              protective equipment to healthcare workers and communities in need.
             </p>
           </div>
         </div>
       </section>
 
       {/* Timeline */}
-      <section className="bg-gray-50">
-        <div className="mx-auto max-w-4xl px-6 py-16 md:py-20">
-          <h2 className="text-3xl font-bold text-navy text-center mb-4">
+      <section className="bg-gradient-to-b from-gray-50 to-white">
+        <div className="mx-auto max-w-4xl px-6 py-20 md:py-24">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy text-center mb-4">
             Milestones
           </h2>
-          <div className="w-16 h-1 bg-gold mx-auto mb-12 rounded-full" />
-          <div className="space-y-8">
-            {timeline.map((item) => (
-              <div key={item.year} className="flex gap-6">
+          <div className="w-20 h-1 gold-shimmer mx-auto mb-14 rounded-full" />
+          <div className="space-y-0">
+            {timeline.map((item, i) => (
+              <div key={item.year} className="flex gap-6 group">
                 <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center flex-shrink-0">
-                    <item.icon size={20} className="text-gold" />
+                  <div className="w-14 h-14 rounded-full bg-navy flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-[0_0_20px_rgba(212,168,67,0.3)] transition-shadow duration-300">
+                    <item.icon size={22} className="text-gold" />
                   </div>
-                  <div className="w-0.5 flex-1 bg-gray-200 mt-2" />
+                  {i < timeline.length - 1 && (
+                    <div className="w-0.5 flex-1 bg-gradient-to-b from-navy/30 to-gray-200 mt-2" />
+                  )}
                 </div>
-                <div className="pb-8">
-                  <span className="text-sm font-bold text-gold">{item.year}</span>
-                  <h3 className="text-lg font-semibold text-navy mt-1">
+                <div className="pb-12">
+                  <span className="inline-block text-xs font-bold text-gold bg-gold/10 px-3 py-1 rounded-full">
+                    {item.year}
+                  </span>
+                  <h3 className="text-lg font-semibold text-navy mt-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mt-1 leading-relaxed">
+                  <p className="text-gray-600 text-sm mt-1 leading-relaxed max-w-md">
                     {item.description}
                   </p>
                 </div>
@@ -165,37 +189,43 @@ export default function AboutPage() {
 
       {/* Community Involvement */}
       <section id="community" className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <h2 className="text-3xl font-bold text-navy text-center mb-4">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy text-center mb-4">
             Community Involvement
           </h2>
-          <div className="w-16 h-1 bg-gold mx-auto mb-12 rounded-full" />
+          <div className="w-20 h-1 gold-shimmer mx-auto mb-14 rounded-full" />
           <div className="grid md:grid-cols-3 gap-8">
             {communityItems.map((item) => (
               <div
                 key={item.org}
-                className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow"
+                className="card-lift bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-100"
               >
-                <div className="w-12 h-12 rounded-full bg-navy/10 flex items-center justify-center mb-4">
-                  <item.icon size={24} className="text-navy" />
+                <div className="w-14 h-14 rounded-xl bg-navy/10 flex items-center justify-center mb-5 group-hover:bg-gold/10 transition-colors duration-300">
+                  <item.icon size={26} className="text-navy" />
                 </div>
                 <h3 className="text-lg font-semibold text-navy mb-1">
                   {item.org}
                 </h3>
-                <p className="text-sm font-medium text-gold mb-2">{item.role}</p>
+                <p className="text-sm font-medium text-gold mb-3">
+                  {item.role}
+                </p>
                 <p className="text-gray-600 text-sm leading-relaxed">
                   {item.description}
                 </p>
               </div>
             ))}
           </div>
-          <div className="mt-12 bg-navy/5 rounded-xl p-8 max-w-3xl mx-auto text-center">
-            <ShieldCheck size={36} className="text-gold mx-auto mb-3" />
-            <h3 className="text-xl font-semibold text-navy mb-2">
+          <div className="mt-14 bg-gradient-to-br from-navy/5 to-gold/5 rounded-2xl p-10 max-w-3xl mx-auto text-center border border-gold/10">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 mb-4">
+              <ShieldCheck size={32} className="text-gold" />
+            </div>
+            <h3 className="text-xl font-semibold text-navy mb-3">
               Community Health Programs
             </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Max Gorin provides free blood pressure screenings for seniors and CPR classes for various demographics through his partnership with the American Heart Association.
+            <p className="text-gray-600 leading-relaxed max-w-xl mx-auto">
+              Max Gorin provides free blood pressure screenings for seniors and
+              CPR classes for various demographics through his partnership with
+              the American Heart Association.
             </p>
           </div>
         </div>

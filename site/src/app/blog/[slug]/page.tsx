@@ -90,19 +90,20 @@ export default async function BlogPost({
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-navy to-navy-dark text-white">
-        <div className="mx-auto max-w-4xl px-6 py-16 md:py-24">
-          <nav className="text-sm text-gray-300 mb-4">
-            <a href="/" className="hover:text-white">Home</a>
-            <span className="mx-2">/</span>
-            <a href="/blog" className="hover:text-white">Blog</a>
-            <span className="mx-2">/</span>
+      <section className="relative bg-gradient-to-br from-navy via-navy-light to-navy-dark text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,168,67,0.08),transparent_50%)]" />
+        <div className="mx-auto max-w-4xl px-6 py-20 md:py-28 relative">
+          <nav className="text-sm text-gray-400 mb-6 animate-fade-in-up">
+            <a href="/" className="hover:text-white transition-colors duration-300">Home</a>
+            <span className="mx-2 text-gray-500">/</span>
+            <a href="/blog" className="hover:text-white transition-colors duration-300">Blog</a>
+            <span className="mx-2 text-gray-500">/</span>
             <span className="text-gold">{post.category}</span>
           </nav>
-          <span className="inline-block text-xs font-medium text-navy bg-gold px-3 py-1 rounded-full mb-4">
+          <span className="inline-block text-xs font-semibold text-navy bg-gold px-3 py-1.5 rounded-full mb-5 animate-fade-in-up">
             {post.category}
           </span>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight animate-fade-in-up-delay-1">
             {post.title}
           </h1>
         </div>
@@ -110,23 +111,23 @@ export default async function BlogPost({
 
       {/* Content */}
       <section className="bg-white">
-        <div className="mx-auto max-w-3xl px-6 py-16 md:py-20">
-          <article className="prose prose-lg max-w-none text-gray-600">
+        <div className="mx-auto max-w-3xl px-6 py-20 md:py-24">
+          <article className="space-y-6 text-gray-600 text-lg leading-relaxed">
             {post.content.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
           </article>
 
-          <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between gap-4">
+          <div className="mt-14 pt-8 border-t border-gray-100 flex flex-col sm:flex-row justify-between gap-4">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-navy hover:text-gold transition-colors duration-300 font-medium"
             >
               <ArrowLeft size={16} /> Back to all posts
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-gold hover:text-gold-dark transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-gold hover:text-gold-dark transition-colors duration-300 font-medium"
             >
               Get in touch <ArrowRight size={16} />
             </Link>
