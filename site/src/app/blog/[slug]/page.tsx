@@ -3,10 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
-const posts: Record<
-  string,
-  { title: string; category: string; content: string[] }
-> = {
+const posts: Record<string, { title: string; category: string; content: string[] }> = {
   "proven-ways-to-get-admitted-into-college": {
     title: "Proven Ways to Get Admitted into College",
     category: "Education",
@@ -57,85 +54,57 @@ export async function generateStaticParams() {
   return Object.keys(posts).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = posts[slug];
   if (!post) return {};
-  return {
-    title: post.title,
-    description: post.content[0],
-    alternates: { canonical: `https://maxgorin.com/blog/${slug}` },
-    openGraph: {
-      title: post.title,
-      description: post.content[0],
-      url: `https://maxgorin.com/blog/${slug}`,
-      type: "article",
-    },
-  };
+  return { title: post.title, description: post.content[0], alternates: { canonical: `https://maxgorin.com/blog/${slug}` }, openGraph: { title: post.title, description: post.content[0], url: `https://maxgorin.com/blog/${slug}`, type: "article" } };
 }
 
-export default async function BlogPost({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = posts[slug];
   if (!post) notFound();
 
   return (
-    <div className="grain">
-      {/* Hero */}
-      <section className="relative min-h-[45vh] flex items-end overflow-hidden">
-        <div className="absolute inset-0 mesh-bg" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[100px]" />
-        <div className="relative mx-auto max-w-4xl px-6 pt-32 pb-16 md:pt-40 md:pb-20 w-full">
-          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-            <a href="/" className="hover:text-white transition-colors duration-300">Home</a>
-            <ChevronRight size={14} className="text-gray-600" />
-            <a href="/blog" className="hover:text-white transition-colors duration-300">Blog</a>
-            <ChevronRight size={14} className="text-gray-600" />
-            <span className="text-gold font-medium">{post.category}</span>
+    <>
+      <section className="bg-cream">
+        <div className="mx-auto max-w-4xl px-6 pt-28 pb-16 md:pt-36 md:pb-20">
+          <nav className="flex items-center gap-2 text-sm text-foreground/30 mb-10">
+            <a href="/" className="hover:text-foreground transition-colors">Home</a>
+            <ChevronRight size={14} />
+            <a href="/blog" className="hover:text-foreground transition-colors">Blog</a>
+            <ChevronRight size={14} />
+            <span className="text-foreground/60">{post.category}</span>
           </nav>
-          <span className="inline-block text-xs font-bold text-background bg-gold px-4 py-1.5 rounded-full mb-6">
-            {post.category}
-          </span>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
+          <div className="accent-line mb-8" />
+          <span className="text-[11px] font-bold text-gold uppercase tracking-wider">{post.category}</span>
+          <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-foreground mt-4 leading-[0.95]">
             {post.title}
           </h1>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="relative border-t border-white/5">
-        <div className="absolute inset-0 bg-surface/50" />
-        <div className="relative mx-auto max-w-3xl px-6 py-20 md:py-24">
-          <article className="space-y-6 text-gray-400 text-lg leading-relaxed">
+      <section className="bg-background">
+        <div className="mx-auto max-w-3xl px-6 py-20 md:py-24">
+          <article className="space-y-6 text-foreground/50 text-lg leading-relaxed">
             {post.content.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+              <p key={i} className={i === 0 ? "text-foreground/70 text-xl leading-relaxed" : ""}>
+                {paragraph}
+              </p>
             ))}
           </article>
 
-          <div className="mt-14 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between gap-4">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300 font-medium"
-            >
-              <ArrowLeft size={16} /> Back to all posts
+          <div className="mt-14 pt-8 border-t border-black/5 flex flex-col sm:flex-row justify-between gap-4">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-foreground/40 hover:text-foreground transition-colors font-medium text-sm">
+              <ArrowLeft size={16} /> All posts
             </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 text-gold hover:text-gold-light transition-colors duration-300 font-medium"
-            >
+            <Link href="/contact" className="inline-flex items-center gap-2 text-gold hover:text-gold-dark transition-colors font-medium text-sm">
               Get in touch <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
